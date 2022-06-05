@@ -1,0 +1,16 @@
+```
+void reverse(int start , int end , vector<int> &arr)
+{
+    while(start <= end)
+    {
+        swap(arr[start] , arr[end]);
+        start+=1;
+        end-=1;
+    }
+}
+void reverseArray(vector<int> &arr , int m)
+{
+    int n = arr.size();
+    reverse(m+1 , n-1, arr);
+}
+```
