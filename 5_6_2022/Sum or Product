@@ -1,0 +1,18 @@
+long long int sumOrProduct(long long int n, long long int q)
+{
+    if(q == 1)
+    {
+        long long int sum = 0;
+        sum = (n * (n+1) /2);
+        return (sum % 1000000007);
+    }
+    else{
+        long long int prod = 1;
+        for(int i = 1;i<=n;i++)
+        {
+            prod*=i;
+            prod%=1000000007;
+        }
+        return prod%1000000007;
+    }
+}
