@@ -1,0 +1,60 @@
+#include <bits/stdc++.h> 
+void set_col_n_row(int row, int col ,vector<vector<int>> &matrix)
+{
+    int idx = row, jdx = col;
+    //left
+    while(idx >= 0)
+    {
+        if(matrix[idx][jdx] != 0)
+            matrix[idx][jdx] = -1;
+        idx-=1;
+    }
+    //up
+    idx = row, jdx = col;
+    while(jdx >= 0)
+    {
+        if(matrix[idx][jdx] != 0)
+            matrix[idx][jdx] = -1;
+        jdx-=1;
+    }
+    //right
+    idx = row, jdx = col;
+    while(jdx < matrix[0].size())
+    {
+        if(matrix[idx][jdx] != 0)
+            matrix[idx][jdx] = -1;
+        jdx+=1;
+    }
+    // down
+    idx = row, jdx = col;
+    while(idx < matrix.size())
+    {
+        if(matrix[idx][jdx] != 0)
+            matrix[idx][jdx] = -1;
+        idx+=1;
+    }
+}
+
+void setZeros(vector<vector<int>> &matrix)
+{
+    int n = matrix.size();
+    int m = matrix[0].size();
+    for(int i =0;i<n;i++)
+    {
+        for(int j = 0;j<m;j++)
+        {
+            if(matrix[i][j] == 0)
+            {
+                set_col_n_row(i , j , matrix);
+            }
+        }
+    }
+    for(int i = 0;i<n;i++)
+    {
+        for(int j =0;j<m;j++)
+        {
+            if(matrix[i][j] == -1)
+                matrix[i][j] = 0;
+        }
+    }
+}
