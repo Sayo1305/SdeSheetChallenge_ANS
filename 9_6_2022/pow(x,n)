@@ -1,0 +1,16 @@
+#include <bits/stdc++.h> 
+#define MOD 1000000000
+int modularExponentiation(int x, int n, int m) {
+    int ans = 1;
+    long long int a = x;
+    while(n)
+    {
+        if(n&1)
+        {
+            ans =  ( ans * (a) % m) %m;
+        }
+        a=( (a) % m *(a) % m)%m;
+        n>>=1;
+    }
+    return (ans)%m;
+}
