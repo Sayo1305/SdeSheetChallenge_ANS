@@ -1,0 +1,17 @@
+#include <bits/stdc++.h> 
+vector<int> majorityElementII(vector<int> &arr)
+{
+    int freq = floor(arr.size()/3);
+    map<int,int> mp;
+    vector<int> ans;
+    for(auto it : arr)
+    {
+        mp[it]+=1;
+    }
+    for(auto it : mp)
+    {
+        if(it.second > freq)
+            ans.push_back(it.first);
+    }
+    return ans;
+}
