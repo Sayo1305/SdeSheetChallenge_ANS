@@ -1,0 +1,77 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    void insert(ListNode* &head, int data)
+    {
+        ListNode* new_node = new ListNode(data);
+        if(head == NULL)
+        {
+            head= new_node;
+            return;
+        }
+        ListNode* temp = head;
+        while(temp -> next != NULL)
+        {
+            temp = temp -> next;
+        }
+        temp->next = new_node;
+    }
+    int get_len(ListNode* head)
+    {
+        int ans  = 0;
+        ListNode* temp = head;
+        while(temp != NULL)
+        {
+            ans+=1;
+            temp = temp -> next;
+        }
+        return ans;
+    }
+    ListNode* rotate(ListNode* head,int k)
+    {
+        ListNode* ans = NULL;
+        ListNode* temp = head;
+        int n = get_len(head);
+        k%=n;
+        int count = 0;
+        while(count < (n-k))
+        {
+            temp = temp -> next;
+            count+=1;
+        }
+        while(temp != NULL)
+        {
+            insert(ans,temp->val);
+            temp = temp -> next;
+        }
+        count = 0;
+        while(head != NULL && count < (n-k))
+        {
+            insert(ans,head->val);
+            head = head->next;
+            count++;
+        }
+        return ans;
+    }
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head == NULL)
+        {
+            return NULL;
+        }
+        if(head -> next == NULL)
+        {
+            return head;
+        }
+        ListNode* ans = rotate(head,k);
+        return ans;
+    }
+};
